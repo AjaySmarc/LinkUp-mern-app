@@ -1,6 +1,7 @@
 import Room from "../models/room.js";
 import User from "../models/user.js";
 
+
 export const getRooms = async (req, res) => {
   const { userid: userId } = req.params;
   try {

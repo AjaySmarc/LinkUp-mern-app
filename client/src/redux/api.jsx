@@ -101,6 +101,23 @@ export const api = createApi({
   }),
 });
 
+ 
+
+export const roomApi = api.injectEndpoints({
+  endpoints: (builder) => ({
+    updateRoomPicture: builder.mutation({
+      query: ({ roomId, picture }) => ({
+        url: `/rooms/${roomId}/picture`,
+        method: 'PUT',
+        body: { picture },
+      }),
+    }),
+  }),
+});
+
+
+
+
 export const {
   useSigninMutation,
   useSignupMutation,
@@ -111,6 +128,7 @@ export const {
   useGetRoomQuery,
   useGetRoomsQuery,
   useAddUserInRoomMutation,
+  useUpdateRoomPictureMutation,
   useRemoveUserFromRoomMutation,
   usePostMessageMutation,
 } = api;

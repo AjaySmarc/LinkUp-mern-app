@@ -1,55 +1,188 @@
-.leftbar.MuiContainer-root {
-  padding-top: 70px;
+/* Make the sidebar take full height with proper content organization */
+.sidebar {
   height: 100vh;
-  min-width: 320px;
-}
-
-.leftbar__paper {
-  min-height: 88vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  position: relative;
 }
 
-/*Create Room css */
-
-/* From uiverse.io by @alexruix */
-.group {
+/* Container styling */
+.leftbar.MuiContainer-root {
+  padding-top: 70px;
+  height: 100%;
+  min-width: 200px;
+  max-width: 280px;
   display: flex;
-  line-height: 28px;
-  align-items: center;
-  position: relative;
-  max-width: 190px;
- }
+  flex-direction: column;
+  flex: 1;
+}
 
- .input {
+/* Paper container as flex container */
+.leftbar__paper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Create Room Form Container - Fixed at top after header */
+.create-room-form-container {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* Style the form container */
+.foot2 {
+  padding: 0 10px;
+}
+
+/* Make only the rooms list scrollable */
+.rooms-list-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 10px; /* Space after create room form */
+}
+
+/* Scrollbar styling */
+.rooms-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.rooms-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.rooms-list-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+/* Style for the list container - normal order to show new rooms added to bottom */
+.list-group {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* Ensure list items are styled properly */
+.list-group-item {
+  margin-bottom: 0;
+  padding: 10px 15px;
+}
+
+/* Create Room Button Styling */
+.create-room-btn {
   width: 100%;
-  height: 40px;
-  line-height: 28px;
-  padding: 0 1rem;
-  padding-left: 2.5rem;
-  border: 2px solid transparent;
+  padding: 12px;
+  border: none;
   border-radius: 8px;
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-room-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+}
+
+.create-room-btn i {
+  margin-right: 8px;
+}
+
+/* Input field styling */
+.room-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.room-input:focus {
   outline: none;
-  background-color: #f3f3f4;
-  color: #0d0c22;
-  transition: .3s ease;
- }
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+}
 
- .input::placeholder {
-  color: #9e9ea7;
- }
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+  .leftbar.MuiContainer-root {
+    min-width: 260px;
+    max-width: 280px;
+  }
+  
+  .app-container {
+    grid-template-columns: 260px 1fr;
+  }
+}
 
- .input:focus, input:hover {
-  outline: none;
-  border-color: rgba(234,76,137,0.4);
-  background-color: #fff;
-  box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
- }
+@media screen and (max-width: 992px) {
+  .leftbar.MuiContainer-root {
+    min-width: 240px;
+    max-width: 260px;
+  }
+  
+  .app-container {
+    grid-template-columns: 240px 1fr;
+  }
+}
 
- .icon {
-  position: absolute;
-  left: 1rem;
-  fill: #9e9ea7;
-  width: 1rem;
-  height: 1rem;
- }
+@media screen and (max-width: 768px) {
+  .leftbar.MuiContainer-root {
+    min-width: 220px;
+    max-width: 240px;
+  }
+  
+  .app-container {
+    grid-template-columns: 220px 1fr;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .leftbar.MuiContainer-root {
+    min-width: 200px;
+    max-width: 220px;
+  }
+  
+  .app-container {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px;
+    height: 100vh;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+  
+  .sidebar.active {
+    left: 0;
+  }
+  
+  .create-room-form-container {
+    padding-bottom: 15px;
+  }
+}
